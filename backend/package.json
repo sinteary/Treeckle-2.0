@@ -5,12 +5,18 @@
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^4.0.1",
-    "graphql-yoga": "^1.18.3",
+    "colors": "^1.4.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^15.1.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.13",
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.3"
   },
   "scripts": {
-    "start": "nodemon -e js,graphql index.js"
+    "start": "NODE_ENV=production node index.js",
+    "server": "nodemon index.js"
   }
 }
