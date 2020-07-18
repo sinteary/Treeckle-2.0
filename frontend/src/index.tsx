@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import "./settings";
+import "./configs";
 import "./index.scss";
 import "semantic-ui-css/semantic.min.css";
 
