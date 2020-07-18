@@ -5,6 +5,7 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
+import { NavigationContainer } from "./components/navigation";
 import {
   LoginPage,
   DashboardPage,
@@ -33,35 +34,41 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Switch>
-          <Route
-            path={LOGIN_PATH}
-            exact
-            render={() =>
-              isLoggedIn ? <Redirect to={DASHBOARD_PATH} /> : <LoginPage />
-            }
-          />
-          <Route path={DASHBOARD_PATH} exact render={() => <DashboardPage />} />
-          <Route path={BOOKINGS_PATH} exact render={() => <BookingsPage />} />
-          <Route path={EVENTS_PATH} exact render={() => <EventsPage />} />
-          <Route
-            path={ADMIN_BOOKINGS_PATH}
-            exact
-            render={() => <AdminBookingsPage />}
-          />
-          <Route
-            path={ADMIN_USERS_PATH}
-            exact
-            render={() => <AdminUsersPage />}
-          />
-          <Route
-            path={ADMIN_SETTINGS_PATH}
-            exact
-            render={() => <AdminSettingsPage />}
-          />
-          <Route path={PROFILE_PATH} exact render={() => <ProfilePage />} />
-          <Route children={() => <Redirect to={LOGIN_PATH} />} />
-        </Switch>
+        <NavigationContainer>
+          <Switch>
+            <Route
+              path={LOGIN_PATH}
+              exact
+              render={() =>
+                isLoggedIn ? <Redirect to={DASHBOARD_PATH} /> : <LoginPage />
+              }
+            />
+            <Route
+              path={DASHBOARD_PATH}
+              exact
+              render={() => <DashboardPage />}
+            />
+            <Route path={BOOKINGS_PATH} exact render={() => <BookingsPage />} />
+            <Route path={EVENTS_PATH} exact render={() => <EventsPage />} />
+            <Route
+              path={ADMIN_BOOKINGS_PATH}
+              exact
+              render={() => <AdminBookingsPage />}
+            />
+            <Route
+              path={ADMIN_USERS_PATH}
+              exact
+              render={() => <AdminUsersPage />}
+            />
+            <Route
+              path={ADMIN_SETTINGS_PATH}
+              exact
+              render={() => <AdminSettingsPage />}
+            />
+            <Route path={PROFILE_PATH} exact render={() => <ProfilePage />} />
+            <Route children={() => <Redirect to={LOGIN_PATH} />} />
+          </Switch>
+        </NavigationContainer>
       </Router>
     </div>
   );
