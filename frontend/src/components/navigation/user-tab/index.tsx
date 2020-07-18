@@ -3,13 +3,14 @@ import { Link, useLocation } from "react-router-dom";
 import { Dropdown, Menu, Image } from "semantic-ui-react";
 import { PROFILE_PATH } from "../../../utils/route-path-constants";
 import avatarImage from "../../../images/avatar.png";
+import "./index.scss";
 
-function DesktopAdminTab() {
+function UserTab() {
   const location = useLocation();
   const pathname = location.pathname;
   console.log(pathname);
   return (
-    <Menu.Menu position="right">
+    <Menu.Menu className="user-tab" position="right">
       <Menu.Item content={<strong>Jeremy</strong>} />
 
       <Dropdown
@@ -34,4 +35,4 @@ function DesktopAdminTab() {
   );
 }
 
-export default DesktopAdminTab;
+export default UserTab;

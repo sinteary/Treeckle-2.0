@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Responsive, Sidebar, Menu } from "semantic-ui-react";
+import { Responsive, Sidebar, Menu, Container } from "semantic-ui-react";
 import LogoTab from "../logo-tab";
 import DashboardTab from "../dashboard-tab";
 import EventsTab from "../events-tab";
 import BookingsTab from "../bookings-tab";
 import MobileAdminTab from "../mobile-admin-tab";
 import UserTab from "../user-tab";
+import "./index.scss";
 
 type Props = {
   children: React.ReactNode;
@@ -43,12 +44,18 @@ function MobileNavigationBar({ children }: Props) {
       </Sidebar>
 
       <Sidebar.Pusher dimmed={isSidebarOpened}>
-        <Menu borderless size="huge" fixed="top">
-          <Menu.Item onClick={() => setSidebarOpened(true)} icon="sidebar" />
+        <Menu className="mobile-app-bar" borderless size="huge" fixed="top">
+          <Menu.Item
+            className="mobile-sidebar-button"
+            onClick={() => setSidebarOpened(true)}
+            icon="sidebar"
+          />
           <UserTab />
         </Menu>
 
-        {children}
+        <div className="mobile-scrolling-container">
+          <Container className="mobile-content-container">{children}</Container>
+        </div>
       </Sidebar.Pusher>
     </Responsive>
   );

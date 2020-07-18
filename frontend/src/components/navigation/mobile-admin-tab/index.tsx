@@ -6,6 +6,7 @@ import {
   ADMIN_USERS_PATH,
   ADMIN_SETTINGS_PATH,
 } from "../../../utils/route-path-constants";
+import "./index.scss";
 
 type Props = {
   onTabClick?: () => void;
@@ -20,7 +21,13 @@ function MobileAdminTab({ onTabClick }: Props) {
         onClick={() => setExpanded(!isExpanded)}
         active={isExpanded}
       >
-        Admin <Label content={0} color="red" size="small" />
+        Admin
+        <Label
+          className="mobile-admin-tab-label"
+          content={0}
+          color="red"
+          size="small"
+        />
       </Accordion.Title>
 
       <Accordion.Content active={isExpanded}>
