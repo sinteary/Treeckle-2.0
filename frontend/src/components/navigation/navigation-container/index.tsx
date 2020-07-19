@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import MobileNavigationBar from "../mobile-navigation-bar";
 import DesktopNavigationBar from "../desktop-navigation-bar";
+import { UserContext } from "../../../context-providers";
 
 type Props = {
   children: React.ReactNode;
 };
 
 function NavigationContainer({ children }: Props) {
+  const { token } = useContext(UserContext);
+
   return (
     <>
-      <DesktopNavigationBar>{children}</DesktopNavigationBar>
-      <MobileNavigationBar>{children}</MobileNavigationBar>
+      {token ? (
+        <>
+          <DesktopNavigationBar>{children}</DesktopNavigationBar>
+          <MobileNavigationBar>{children}</MobileNavigationBar>
+        </>
+      ) : (
+        children
+      )}
     </>
   );
 }

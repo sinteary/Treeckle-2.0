@@ -1,6 +1,5 @@
 import React from "react";
 import { Image, MenuItem } from "semantic-ui-react";
-import TabItem from "../tab-item";
 import { DASHBOARD_PATH } from "../../../utils/route-path-constants";
 import logo from "../../../images/treeckle-side.png";
 import { Link } from "react-router-dom";
