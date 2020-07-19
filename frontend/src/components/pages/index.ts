@@ -4,5 +4,5 @@ export { default as AdminUsersPage } from "./admin-users-page";
 export { default as BookingsPage } from "./bookings-page";
 export { default as DashboardPage } from "./dashboard-page";
 export { default as EventsPage } from "./events-page";
-export { default as LoginPage } from "./login-page";
+export { LoginPage } from "./auth";
 export { default as ProfilePage } from "./profile-page";

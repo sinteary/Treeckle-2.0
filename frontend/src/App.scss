@@ -6,3 +6,12 @@
 body ::-webkit-scrollbar-thumb {
   background: #acacac !important;
 }
+
+.ui.segment {
+  border-radius: 0.5rem !important;
+}
+
+.raised {
+  box-shadow: 0 2px 4px 0 rgba(34, 36, 38, 0.82),
+    0 2px 10px 0 rgba(34, 36, 38, 0.85) !important;
+}

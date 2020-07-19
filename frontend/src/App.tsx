@@ -8,6 +8,7 @@ import "./App.scss";
 toast.configure({
   position: "bottom-center",
   autoClose: 3000,
+  limit: 3,
 });
 
 function App() {
