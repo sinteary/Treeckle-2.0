@@ -3,9 +3,8 @@ import { Form, Header } from "semantic-ui-react";
 import { UserContext } from "../../../../context-providers";
 import { isValidEmail } from "../../../../utils/validators";
 import {
-  echoMissingFields,
-  echoIncorrectFields,
-  echoSuccessfulMessage,
+  echoFieldErrorMessage,
+  echoSuccessMessage,
   echoUnknownError,
 } from "../../../../utils/toast-messages";
 import "./index.scss";
@@ -15,23 +14,22 @@ type Props = {
 };
 
 function LoginForm({ onForgetPassword }: Props) {
-  const { setName, setRole, setToken, setProfilePic } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const onLogin = () => {
     if (!email || !password) {
-      echoMissingFields("email", "password");
+      echoFieldErrorMessage("Missing", "email", "password");
       return;
     }
     if (!isValidEmail(email)) {
-      echoIncorrectFields("email", "password");
+      echoFieldErrorMessage("Invalid", "email");
       return;
     }
 
-    setName("Jeremy");
-    setToken("dsdsd");
-    echoSuccessfulMessage("signed in");
+    setUser({ name: "Jeremy", token: "asdasdas" });
+    echoSuccessMessage("Signed in");
   };
 
   return (
@@ -42,6 +40,7 @@ function LoginForm({ onForgetPassword }: Props) {
         iconPosition="left"
         placeholder="Email"
         type="email"
+        value={email}
         onChange={(event, { value }) => setEmail(value)}
       />
       <Form.Input
@@ -49,6 +48,7 @@ function LoginForm({ onForgetPassword }: Props) {
         iconPosition="left"
         placeholder="Password"
         type="password"
+        value={password}
         onChange={(event, { value }) => setPassword(value)}
       />
       <Form.Field

@@ -4,22 +4,17 @@ import { Dropdown, Menu, Image } from "semantic-ui-react";
 import { PROFILE_PATH } from "../../../utils/route-path-constants";
 import avatarImage from "../../../images/avatar.png";
 import { UserContext } from "../../../context-providers";
-import { echoSuccessfulMessage } from "../../../utils/toast-messages";
+import { echoSuccessMessage } from "../../../utils/toast-messages";
 import "./index.scss";
 
 function UserTab() {
-  const { name, setName, setRole, setToken, setProfilePic } = useContext(
-    UserContext
-  );
+  const { name, setUser } = useContext(UserContext);
   const location = useLocation();
   const pathname = location.pathname;
 
   const onSignOut = () => {
-    setName(undefined);
-    setRole(undefined);
-    setToken(undefined);
-    setProfilePic(undefined);
-    echoSuccessfulMessage("signed out");
+    setUser(null);
+    echoSuccessMessage("Signed out");
   };
 
   return (

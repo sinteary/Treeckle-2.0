@@ -8,6 +8,8 @@ import {
 import { NavigationContainer } from "./components/navigation";
 import {
   LoginPage,
+  AccountCreationPage,
+  ResetPasswordPage,
   DashboardPage,
   BookingsPage,
   EventsPage,
@@ -18,6 +20,8 @@ import {
 } from "./components/pages";
 import {
   LOGIN_PATH,
+  NEW_USER_PATH,
+  RESET_USER_PATH,
   DASHBOARD_PATH,
   BOOKINGS_PATH,
   EVENTS_PATH,
@@ -29,7 +33,7 @@ import {
 import { UserContext } from "./context-providers";
 
 function Routes() {
-  const { token } = useContext(UserContext);
+  const { token, setUser } = useContext(UserContext);
 
   return (
     <Router>
@@ -38,9 +42,28 @@ function Routes() {
           <Route
             path={LOGIN_PATH}
             exact
-            render={() =>
-              token ? <Redirect to={DASHBOARD_PATH} /> : <LoginPage />
-            }
+            render={() => {
+              if (token) {
+                return <Redirect to={DASHBOARD_PATH} />;
+              } else {
+                setUser(null);
+                return <LoginPage />;
+              }
+            }}
+          />
+          <Route
+            path={NEW_USER_PATH}
+            render={() => {
+              setUser(null);
+              return <AccountCreationPage />;
+            }}
+          />
+          <Route
+            path={RESET_USER_PATH}
+            render={() => {
+              setUser(null);
+              return <ResetPasswordPage />;
+            }}
           />
           {!token && <Route children={() => <Redirect to={LOGIN_PATH} />} />}
           <Route path={DASHBOARD_PATH} exact render={() => <DashboardPage />} />

@@ -1,27 +1,27 @@
 import { toast } from "react-toastify";
 
-export const echoMissingFields = (...fieldNames: string[]) => {
+export const echoFieldErrorMessage = (
+  errorHeader: string,
+  ...fieldNames: string[]
+) => {
   const fields = fieldNames.join("/");
   toast.error(
-    `Missing ${fields ? fields + " " : ""}field${
+    `${errorHeader} ${fields ? fields + " " : ""}field${
       fieldNames.length !== 1 ? "s" : ""
     }.`
   );
 };
 
-export const echoIncorrectFields = (...fieldNames: string[]) => {
-  const fields = fieldNames.join("/");
-  toast.error(
-    `Incorrect ${fields ? fields + " " : ""}field${
-      fieldNames.length !== 1 ? "s" : ""
-    }.`
-  );
-};
-
-export const echoSuccessfulMessage = (message: string) => {
-  toast.success(`Successfully ${message}.`);
+export const echoSuccessMessage = (message: string) => {
+  toast.success(`${message} successfully.`);
 };
 
 export const echoUnknownError = () => {
   toast.error("Unknown error. Please try again.");
+};
+
+export const echoSubmittedFormError = () => {
+  toast.error(
+    "The form has already been submitted. Please refresh to submit another form."
+  );
 };

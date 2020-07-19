@@ -1,4 +1,6 @@
 export const LOGIN_PATH = "/";
+export const NEW_USER_PATH = "/newuser/:id";
+export const RESET_USER_PATH = "/resetuser/:id";
 export const DASHBOARD_PATH = "/dashboard";
 export const BOOKINGS_PATH = "/bookings";
 export const EVENTS_PATH = "/events";
