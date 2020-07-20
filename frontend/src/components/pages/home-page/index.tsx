@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import {
   Responsive,
@@ -12,10 +12,29 @@ import {
 } from "semantic-ui-react";
 import "./index.scss";
 import { LOGIN_PATH } from "../../../utils/route-path-constants";
-import { SSL_OP_NO_TLSv1_1 } from "constants";
 
 function HomePage() {
   const history = useHistory();
+  const [showScroll, setShowScroll] = useState(false);
+
+  const checkScrollTop = useCallback(() => {
+    console.log(window.pageYOffset, showScroll);
+    if (!showScroll && window.pageYOffset > 400) {
+      setShowScroll(true);
+    } else if (showScroll && window.pageYOffset <= 400) {
+      setShowScroll(false);
+    }
+  }, [showScroll, setShowScroll]);
+
+  const scrollToTop = (behavior: "auto" | "smooth") =>
+    window.scrollTo({ top: 0, left: 0, behavior });
+
+  useEffect(() => scrollToTop("auto"), []);
+
+  useEffect(() => {
+    window.addEventListener("scroll", checkScrollTop);
+    return () => window.removeEventListener("scroll", checkScrollTop);
+  }, [checkScrollTop]);
 
   return (
     <div className="home-page">
@@ -127,14 +146,14 @@ function HomePage() {
       <Segment inverted vertical className="home-footer">
         <Container>
           <Grid columns="2" centered stackable padded="vertically">
-            <Grid.Column textAlign="center" width="6">
+            <Grid.Column textAlign="center">
               <h2>ABOUT TREECKLE</h2>
               <p>
                 Treeckle is the product of a CS3216 final project, built with
                 the aim of making a difference through a web application.
               </p>
             </Grid.Column>
-            <Grid.Column textAlign="center" width="6">
+            <Grid.Column textAlign="center">
               <h2>CONTACT US</h2>
               <p>
                 <a href="mailto:jeremytan97@u.nus.edu">
@@ -147,6 +166,17 @@ function HomePage() {
           <p>© Treeckle 2020</p>
         </Container>
       </Segment>
+
+      <Transition visible={showScroll} animation="scale" duration="300">
+        <Button
+          className="scroll-to-top-button"
+          color="teal"
+          onClick={() => scrollToTop("smooth")}
+          icon="arrow up"
+          circular
+          size="massive"
+        />
+      </Transition>
     </div>
   );
 }
