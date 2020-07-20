@@ -6,3 +6,4 @@ export { default as DashboardPage } from "./dashboard-page";
 export { default as EventsPage } from "./events-page";
 export { LoginPage, AccountCreationPage, ResetPasswordPage } from "./auth";
 export { default as ProfilePage } from "./profile-page";
+export { default as HomePage } from "./home-page";

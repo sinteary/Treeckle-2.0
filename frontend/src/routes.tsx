@@ -17,6 +17,7 @@ import {
   AdminUsersPage,
   AdminSettingsPage,
   ProfilePage,
+  HomePage,
 } from "./components/pages";
 import {
   LOGIN_PATH,
@@ -29,6 +30,7 @@ import {
   ADMIN_SETTINGS_PATH,
   ADMIN_USERS_PATH,
   PROFILE_PATH,
+  HOME_PATH,
 } from "./utils/route-path-constants";
 import { UserContext } from "./context-providers";
 
@@ -40,6 +42,13 @@ function Routes() {
       <NavigationContainer>
         <Switch>
           <Route
+            path={HOME_PATH}
+            exact
+            render={() =>
+              token ? <Redirect to={DASHBOARD_PATH} /> : <HomePage />
+            }
+          />
+          <Route
             path={LOGIN_PATH}
             exact
             render={() =>
@@ -48,7 +57,7 @@ function Routes() {
           />
           <Route path={NEW_USER_PATH} render={() => <AccountCreationPage />} />
           <Route path={RESET_USER_PATH} render={() => <ResetPasswordPage />} />
-          {!token && <Route children={() => <Redirect to={LOGIN_PATH} />} />}
+          {!token && <Route children={() => <Redirect to={HOME_PATH} />} />}
           <Route path={DASHBOARD_PATH} exact render={() => <DashboardPage />} />
           <Route path={BOOKINGS_PATH} exact render={() => <BookingsPage />} />
           <Route path={EVENTS_PATH} exact render={() => <EventsPage />} />
@@ -68,7 +77,7 @@ function Routes() {
             render={() => <AdminSettingsPage />}
           />
           <Route path={PROFILE_PATH} exact render={() => <ProfilePage />} />
-          <Route children={() => <Redirect to={LOGIN_PATH} />} />
+          <Route children={() => <Redirect to={HOME_PATH} />} />
         </Switch>
       </NavigationContainer>
     </Router>

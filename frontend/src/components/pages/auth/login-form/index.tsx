@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { Form, Header } from "semantic-ui-react";
 import { UserContext } from "../../../../context-providers";
 import { isValidEmail } from "../../../../utils/validators";
@@ -8,6 +9,7 @@ import {
   echoUnknownError,
 } from "../../../../utils/toast-messages";
 import "./index.scss";
+import { HOME_PATH } from "../../../../utils/route-path-constants";
 
 type Props = {
   onForgetPassword: () => void;
@@ -15,6 +17,7 @@ type Props = {
 
 function LoginForm({ onForgetPassword }: Props) {
   const { setUser } = useContext(UserContext);
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -57,6 +60,12 @@ function LoginForm({ onForgetPassword }: Props) {
         content="Forget password?"
       />
       <Form.Button type="submit" primary fluid content="Login" />
+      <Form.Button
+        onClick={() => history.push(HOME_PATH)}
+        type="button"
+        fluid
+        content="Home"
+      />
     </Form>
   );
 }
