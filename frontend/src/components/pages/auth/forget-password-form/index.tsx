@@ -6,7 +6,6 @@ import {
   echoUnknownError,
   echoSuccessMessage,
 } from "../../../../utils/toast-messages";
-import "./index.scss";
 
 type Props = {
   onBackToLogin: () => void;
@@ -25,7 +24,7 @@ function ForgetPasswordForm({ onBackToLogin }: Props) {
       return;
     }
 
-    echoSuccessMessage("Password reset requested");
+    echoSuccessMessage("An email to reset your password has been sent");
     onBackToLogin();
   };
 
@@ -33,8 +32,8 @@ function ForgetPasswordForm({ onBackToLogin }: Props) {
     <Form onSubmit={onReset}>
       <Header>Reset Password Request</Header>
       <Form.Field
-        className="reset-password-description"
-        content="Please key in your email so that we can send you a link to reset your password."
+        className="black-text"
+        content="Please enter your account email so that we can send you a link to reset your password."
       />
       <Form.Input
         icon="mail"

@@ -33,7 +33,7 @@ import {
 import { UserContext } from "./context-providers";
 
 function Routes() {
-  const { token, setUser } = useContext(UserContext);
+  const { token } = useContext(UserContext);
 
   return (
     <Router>
@@ -42,29 +42,12 @@ function Routes() {
           <Route
             path={LOGIN_PATH}
             exact
-            render={() => {
-              if (token) {
-                return <Redirect to={DASHBOARD_PATH} />;
-              } else {
-                setUser(null);
-                return <LoginPage />;
-              }
-            }}
+            render={() =>
+              token ? <Redirect to={DASHBOARD_PATH} /> : <LoginPage />
+            }
           />
-          <Route
-            path={NEW_USER_PATH}
-            render={() => {
-              setUser(null);
-              return <AccountCreationPage />;
-            }}
-          />
-          <Route
-            path={RESET_USER_PATH}
-            render={() => {
-              setUser(null);
-              return <ResetPasswordPage />;
-            }}
-          />
+          <Route path={NEW_USER_PATH} render={() => <AccountCreationPage />} />
+          <Route path={RESET_USER_PATH} render={() => <ResetPasswordPage />} />
           {!token && <Route children={() => <Redirect to={LOGIN_PATH} />} />}
           <Route path={DASHBOARD_PATH} exact render={() => <DashboardPage />} />
           <Route path={BOOKINGS_PATH} exact render={() => <BookingsPage />} />

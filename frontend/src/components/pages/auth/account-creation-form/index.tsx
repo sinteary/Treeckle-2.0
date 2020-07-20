@@ -6,7 +6,6 @@ import {
   echoFieldErrorMessage,
   echoSubmittedFormError,
 } from "../../../../utils/toast-messages";
-import "./index.scss";
 import { LOGIN_PATH } from "../../../../utils/route-path-constants";
 import { isValidEmail } from "../../../../utils/validators";
 
@@ -31,6 +30,7 @@ function AccountCreationForm() {
       return;
     }
     echoSuccessMessage("Account created");
+    console.log("ID:", id);
     setUserCreated(true);
   };
 
@@ -68,7 +68,7 @@ function AccountCreationForm() {
         duration="300"
       >
         <Form.Field
-          className="short-password-label"
+          className="red-text"
           content="Password is less than 8 characters"
         />
       </Transition>
