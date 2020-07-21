@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import {
   Responsive,
@@ -9,49 +9,26 @@ import {
   Icon,
   Segment,
   Divider,
+  Image,
 } from "semantic-ui-react";
-import "./index.scss";
+import { useScrollToTop } from "../../../utils/custom-hooks";
 import { LOGIN_PATH } from "../../../utils/route-path-constants";
+import "./index.scss";
 
 function HomePage() {
   const history = useHistory();
-  const [showScroll, setShowScroll] = useState(false);
-
-  const checkScrollTop = useCallback(() => {
-    console.log(window.pageYOffset, showScroll);
-    if (!showScroll && window.pageYOffset > 400) {
-      setShowScroll(true);
-    } else if (showScroll && window.pageYOffset <= 400) {
-      setShowScroll(false);
-    }
-  }, [showScroll, setShowScroll]);
-
-  const scrollToTop = (behavior: "auto" | "smooth") =>
-    window.scrollTo({ top: 0, left: 0, behavior });
-
-  useEffect(() => scrollToTop("auto"), []);
-
-  useEffect(() => {
-    window.addEventListener("scroll", checkScrollTop);
-    return () => window.removeEventListener("scroll", checkScrollTop);
-  }, [checkScrollTop]);
+  const [showScroll, scrollToTop] = useScrollToTop(300);
 
   return (
     <div className="home-page">
       <div className="home-banner">
         <Transition animation="scale" transitionOnMount>
           <div className="header-container">
-            <picture className="image-container">
-              <source
-                src={require("../../../assets/treeckle-outline-min.webp")}
-                type="image/webp"
-              />
-              <img
-                className="image"
-                alt="Treeckle"
-                src={require("../../../assets/treeckle-outline-min.png")}
-              />
-            </picture>
+            <Image
+              className="logo"
+              src={require("../../../assets/treeckle-outline-min.png")}
+              alt=""
+            />
             <h1 className="main-title">TREECKLE</h1>
             <p className="subtitle">Residential life. Simplified.</p>
             <Button
