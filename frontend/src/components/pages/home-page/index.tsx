@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import {
   Responsive,
@@ -10,13 +10,66 @@ import {
   Segment,
   Divider,
   Image,
+  Modal,
+  TransitionablePortal,
 } from "semantic-ui-react";
-import { useScrollToTop } from "../../../utils/custom-hooks";
-import { LOGIN_PATH } from "../../../utils/route-path-constants";
+import { useScrollToTop, useOpenId } from "../../../custom-hooks";
+import { LOGIN_PATH } from "../../../routes";
+import logo from "../../../assets/treeckle-outline-min.png";
 import "./index.scss";
 
-function HomePage() {
+function SignInButton() {
   const history = useHistory();
+  const [startOpenIdAuth] = useOpenId();
+  const [isSignInOptionsOpened, setSignInOptionsOpened] = useState(false);
+
+  return (
+    <>
+      <Button
+        className="sign-in-button"
+        content="Sign In"
+        onClick={() => setSignInOptionsOpened(true)}
+      />
+      <TransitionablePortal
+        open={isSignInOptionsOpened}
+        transition={{ animation: "fade down" }}
+      >
+        <Modal
+          as={Segment}
+          open={true}
+          onClose={() => setSignInOptionsOpened(false)}
+          size="tiny"
+        >
+          <Modal.Header style={{ textAlign: "center" }}>
+            Sign In Options
+          </Modal.Header>
+          <Modal.Content>
+            <Grid columns="2" textAlign="center" verticalAlign="middle">
+              <Grid.Column>
+                <Button
+                  onClick={startOpenIdAuth}
+                  content="Sign in with NUSNET"
+                  primary
+                  fluid
+                />
+              </Grid.Column>
+              <Grid.Column>
+                <Button
+                  onClick={() => history.push(LOGIN_PATH)}
+                  content="Custom sign in"
+                  fluid
+                  o
+                />
+              </Grid.Column>
+            </Grid>
+          </Modal.Content>
+        </Modal>
+      </TransitionablePortal>
+    </>
+  );
+}
+
+function HomePage() {
   const [showScroll, scrollToTop] = useScrollToTop(300);
 
   return (
@@ -24,18 +77,10 @@ function HomePage() {
       <div className="home-banner">
         <Transition animation="scale" transitionOnMount>
           <div className="header-container">
-            <Image
-              className="logo"
-              src={require("../../../assets/treeckle-outline-min.png")}
-              alt=""
-            />
+            <Image className="logo" src={logo} alt="" />
             <h1 className="main-title">TREECKLE</h1>
             <p className="subtitle">Residential life. Simplified.</p>
-            <Button
-              onClick={() => history.push(LOGIN_PATH)}
-              className="sign-in-button"
-              content="Sign In"
-            />
+            <SignInButton />
           </div>
         </Transition>
         <Responsive

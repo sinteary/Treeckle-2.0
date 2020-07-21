@@ -5,7 +5,7 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import { NavigationContainer } from "./components/navigation";
+import { NavigationContainer } from "../components/navigation";
 import {
   LoginPage,
   AccountCreationPage,
@@ -18,7 +18,8 @@ import {
   AdminSettingsPage,
   ProfilePage,
   HomePage,
-} from "./components/pages";
+  OpenIdPage,
+} from "../components/pages";
 import {
   LOGIN_PATH,
   NEW_USER_PATH,
@@ -31,8 +32,9 @@ import {
   ADMIN_USERS_PATH,
   PROFILE_PATH,
   HOME_PATH,
-} from "./utils/route-path-constants";
-import { UserContext } from "./context-providers";
+  OPEN_ID_PATH,
+} from "./index";
+import { UserContext } from "../context-providers";
 
 function Routes() {
   const { token } = useContext(UserContext);
@@ -57,6 +59,9 @@ function Routes() {
           />
           <Route path={NEW_USER_PATH} render={() => <AccountCreationPage />} />
           <Route path={RESET_USER_PATH} render={() => <ResetPasswordPage />} />
+          {!token && (
+            <Route path={OPEN_ID_PATH} render={() => <OpenIdPage />} />
+          )}
           {!token && <Route children={() => <Redirect to={HOME_PATH} />} />}
           <Route path={DASHBOARD_PATH} exact render={() => <DashboardPage />} />
           <Route path={BOOKINGS_PATH} exact render={() => <BookingsPage />} />

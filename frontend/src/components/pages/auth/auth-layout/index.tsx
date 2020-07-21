@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import logo from "../../../../images/treeckle-title-bottom-transparent.png";
+import logo from "../../../../assets/treeckle-title-bottom-transparent.png";
 import { Grid, Image, Segment, Transition } from "semantic-ui-react";
 import "./index.scss";
 
@@ -22,11 +22,7 @@ function AuthLayout({ children }: Props) {
       verticalAlign="middle"
     >
       <Grid.Column className="auth-layout-segment-container">
-        <Transition
-          onHide={() => console.log("hello")}
-          visible={isVisible}
-          animation="scale"
-        >
+        <Transition visible={isVisible} animation="scale">
           <Segment className="auth-layout-segment" placeholder raised>
             <Grid columns="2" relaxed stackable verticalAlign="middle">
               <Grid.Column>{children}</Grid.Column>

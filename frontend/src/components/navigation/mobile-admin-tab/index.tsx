@@ -5,7 +5,7 @@ import {
   ADMIN_BOOKINGS_PATH,
   ADMIN_USERS_PATH,
   ADMIN_SETTINGS_PATH,
-} from "../../../utils/route-path-constants";
+} from "../../../routes";
 import "./index.scss";
 
 type Props = {

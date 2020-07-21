@@ -1,6 +1,6 @@
 import React from "react";
 import TabItem from "../tab-item";
-import { BOOKINGS_PATH } from "../../../utils/route-path-constants";
+import { BOOKINGS_PATH } from "../../../routes";
 
 type Props = {
   onTabClick?: () => void;

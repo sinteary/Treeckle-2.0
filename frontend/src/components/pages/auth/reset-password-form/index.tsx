@@ -6,7 +6,7 @@ import {
   echoFieldErrorMessage,
   echoSubmittedFormError,
 } from "../../../../utils/toast-messages";
-import { LOGIN_PATH } from "../../../../utils/route-path-constants";
+import { LOGIN_PATH } from "../../../../routes";
 import { isValidEmail } from "../../../../utils/validators";
 
 function ResetPasswordForm() {

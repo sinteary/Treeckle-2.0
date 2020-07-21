@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Dropdown, Menu, Image } from "semantic-ui-react";
-import { PROFILE_PATH } from "../../../utils/route-path-constants";
-import avatarImage from "../../../images/avatar.png";
+import { PROFILE_PATH } from "../../../routes";
+import avatarImage from "../../../assets/avatar.png";
 import { UserContext } from "../../../context-providers";
 import { echoSuccessMessage } from "../../../utils/toast-messages";
 import "./index.scss";

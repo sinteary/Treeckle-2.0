@@ -9,7 +9,7 @@ import {
   echoUnknownError,
 } from "../../../../utils/toast-messages";
 import "./index.scss";
-import { HOME_PATH } from "../../../../utils/route-path-constants";
+import { HOME_PATH } from "../../../../routes";
 
 type Props = {
   onForgetPassword: () => void;
