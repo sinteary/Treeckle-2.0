@@ -17,7 +17,7 @@ export function useOpenId() {
     url += "&openid.sreg.required=email,nickname,fullname";
     url +=
       "&openid.identity=http://specs.openid.net/auth/2.0/identifier_select";
-    url += "&openid.return_to=http://localhost:3000/openid";
+    url += "&openid.return_to=https://treeckle.web.app/openid";
     window.open(url, "_self");
   }, []);
 

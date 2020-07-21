@@ -178,7 +178,7 @@ function HomePage() {
             <Grid.Column textAlign="center">
               <h2>CONTACT US</h2>
               <p>
-                <a href="mailto:jeremytan97@u.nus.edu">
+                <a className="email-link" href="mailto:jeremytan97@u.nus.edu">
                   <Icon name="mail" /> Email
                 </a>
               </p>
@@ -197,6 +197,7 @@ function HomePage() {
           icon="arrow up"
           circular
           size="massive"
+          aria-label="scroll to top"
         />
       </Transition>
     </div>

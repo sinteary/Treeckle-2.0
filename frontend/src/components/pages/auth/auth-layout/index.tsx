@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import logo from "../../../../assets/treeckle-title-bottom-transparent.png";
+import logo from "../../../../assets/treeckle-title-bottom-transparent-min.png";
 import { Grid, Image, Segment, Transition } from "semantic-ui-react";
 import "./index.scss";
 
