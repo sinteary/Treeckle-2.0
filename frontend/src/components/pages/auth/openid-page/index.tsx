@@ -28,7 +28,7 @@ function OpenIdPage() {
     history.push(HOME_PATH);
     const isCancelled = query.get("openid.mode") === "cancel";
     echoErrorMessage(isCancelled ? "Cancelled signed in." : "Invalid user.");
-  }, [query]);
+  }, [query, history, setUser]);
 
   return <Loader />;
 }

@@ -1,14 +1,7 @@
-.mobile-app-bar {
-  height: 5rem;
-}
-
-.mobile-content-container {
-  margin-top: 6rem;
-}
-
-.mobile-scrolling-container {
+.mobile-page-container {
   height: 100vh;
   overflow: auto;
+  padding: 6rem 0;
 }
 
 .mobile-sidebar-button {

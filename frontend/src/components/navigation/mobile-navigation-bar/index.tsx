@@ -44,7 +44,7 @@ function MobileNavigationBar({ children }: Props) {
       </Sidebar>
 
       <Sidebar.Pusher dimmed={isSidebarOpened}>
-        <Menu className="mobile-app-bar" borderless size="huge" fixed="top">
+        <Menu className="app-bar" borderless size="huge" fixed="top">
           <Menu.Item
             className="mobile-sidebar-button"
             onClick={() => setSidebarOpened(true)}
@@ -53,8 +53,8 @@ function MobileNavigationBar({ children }: Props) {
           <UserTab />
         </Menu>
 
-        <div className="mobile-scrolling-container">
-          <Container className="mobile-content-container">{children}</Container>
+        <div className="mobile-page-container">
+          <Container>{children}</Container>
         </div>
       </Sidebar.Pusher>
     </Responsive>

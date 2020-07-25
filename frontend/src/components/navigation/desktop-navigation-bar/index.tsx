@@ -14,8 +14,11 @@ type Props = {
 
 function DesktopNavigationBar({ children }: Props) {
   return (
-    <Responsive minWidth={Responsive.onlyComputer.minWidth}>
-      <Menu className="desktop-app-bar" borderless size="huge" fixed="top">
+    <Responsive
+      className="desktop-root-container"
+      minWidth={Responsive.onlyComputer.minWidth}
+    >
+      <Menu className="app-bar" borderless size="huge" fixed="top">
         <LogoTab />
         <DashboardTab />
         <BookingsTab />
@@ -24,7 +27,9 @@ function DesktopNavigationBar({ children }: Props) {
         <UserTab />
       </Menu>
 
-      <Container className="desktop-content-container">{children}</Container>
+      <div className="desktop-page-container">
+        <Container>{children}</Container>
+      </div>
     </Responsive>
   );
 }
