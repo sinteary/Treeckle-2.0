@@ -1,29 +1,104 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+media
 
-# keys
-/config/keys.js
+# Backup files # 
+*.bak 
 
-# environment variables files
-/config/config.env
+# If you are using PyCharm # 
+.idea/**/workspace.xml 
+.idea/**/tasks.xml 
+.idea/dictionaries 
+.idea/**/dataSources/ 
+.idea/**/dataSources.ids 
+.idea/**/dataSources.xml 
+.idea/**/dataSources.local.xml 
+.idea/**/sqlDataSources.xml 
+.idea/**/dynamic.xml 
+.idea/**/uiDesigner.xml 
+.idea/**/gradle.xml 
+.idea/**/libraries 
+*.iws /out/ 
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+# Python # 
+*.py[cod] 
+*$py.class 
 
-# testing
-/coverage
+# Distribution / packaging 
+.Python build/ 
+develop-eggs/ 
+dist/ 
+downloads/ 
+eggs/ 
+.eggs/ 
+lib/ 
+lib64/ 
+parts/ 
+sdist/ 
+var/ 
+wheels/ 
+*.egg-info/ 
+.installed.cfg 
+*.egg 
+*.manifest 
+*.spec 
 
-# production
-/build
+# Installer logs 
+pip-log.txt 
+pip-delete-this-directory.txt 
 
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# Unit test / coverage reports 
+htmlcov/ 
+.tox/ 
+.coverage 
+.coverage.* 
+.cache 
+.pytest_cache/ 
+nosetests.xml 
+coverage.xml 
+*.cover 
+.hypothesis/ 
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Jupyter Notebook 
+.ipynb_checkpoints 
+
+# pyenv 
+.python-version 
+
+# celery 
+celerybeat-schedule.* 
+
+# SageMath parsed files 
+*.sage.py 
+
+# Environments 
+.env 
+.venv 
+env/ 
+venv/ 
+ENV/ 
+env.bak/ 
+venv.bak/ 
+
+# mkdocs documentation 
+/site 
+
+# mypy 
+.mypy_cache/ 
+
+
+
+# sftp configuration file 
+sftp-config.json 
+
+# Package control specific files Package 
+Control.last-run 
+Control.ca-list 
+Control.ca-bundle 
+Control.system-ca-bundle 
+GitHub.sublime-settings 
+
