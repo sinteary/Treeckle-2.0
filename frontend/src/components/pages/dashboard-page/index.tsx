@@ -6,7 +6,7 @@ function DashboardPage() {
   const { name } = useContext(UserContext);
 
   return (
-    <div>
+    <>
       <h1>Welcome, {name}!</h1>
       <h2>Head over to the "Bookings" tab to view/make bookings.</h2>
 
@@ -42,7 +42,13 @@ function DashboardPage() {
         </a>
         .
       </p>
-    </div>
+
+      <iframe
+        title="NUSMods"
+        style={{ width: "100%", height: "50rem" }}
+        src="https://nusmods.com"
+      />
+    </>
   );
 }
 

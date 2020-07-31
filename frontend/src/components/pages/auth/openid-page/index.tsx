@@ -16,9 +16,10 @@ function OpenIdPage() {
 
   useEffect(() => {
     const nusnetId = query.get("openid.sreg.nickname");
-    const email = query.get("openid.sreg.fullname");
+    const email = query.get("openid.sreg.email");
     const fullName = query.get("openid.sreg.fullname");
 
+    //make api call to server to validate user
     if (nusnetId && email && fullName) {
       setUser({ name: fullName, token: "testToken" });
       echoSuccessMessage("Signed in");
@@ -27,7 +28,7 @@ function OpenIdPage() {
 
     history.push(HOME_PATH);
     const isCancelled = query.get("openid.mode") === "cancel";
-    echoErrorMessage(isCancelled ? "Cancelled signed in." : "Invalid user.");
+    echoErrorMessage(isCancelled ? "Sign in cancelled." : "Invalid user.");
   }, [query, history, setUser]);
 
   return <Loader />;
