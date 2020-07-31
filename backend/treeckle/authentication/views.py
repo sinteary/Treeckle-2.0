@@ -1,63 +1,68 @@
-from authentication.models import User
 from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
-from authentication.serializers import UserSerializer
-from authentication.jwt_functions import get_tokens_for_user
-from authentication.user_manager import UserManager
-from treeckle.common import organisations, user_types
-from authentication.models import User
 from rest_framework import status
-
-
-class UserDetail(APIView):
-    def get_user(self, user_id):
-        try:
-            return User.objects.get(pk=user_id)
-        except User.DoesNotExist:
-            raise Http404
-    
-    def get(self, request, user_id):
-        user = get_user(user_id)
-        serializer = UserSerializer(user)
-        return Response(serializer.data)
-
+from rest_framework.permissions import IsAuthenticated
+from treeckle.common import organisations, user_types, api_responses
+from treeckle.common.api_responses import (
+    create_ok_response,
+    create_bad_request_response,
+    create_custom_positive_response,
+)
+from .models import User
+from .serializers import UserSerializer, createLocalAccountSerializer, loginAccountSerializer
+from .jwt_functions import get_tokens_for_user
+from .user_manager import UserManager
+from .models import User
 
 class createLocalAccount(APIView):
     def post(self, request):
-        serializer = UserSerializer(data=request.data)
-        email = request.data.get('email')
-        full_name = request.data.get('full_name')
-        password = request.data.get('password')
-        organisation = request.data.get('organisation')
+        serializer = createLocalAccountSerializer(data=request.data)
 
-        user_exists = User.objects.filter(email=email).exists()
+        if serializer.is_valid():
+            email = serializer.validated_data.get('email')
+            full_name = serializer.validated_data.get('full_name')
+            password = serializer.validated_data.get('password')
+            organisation = serializer.validated_data.get('organisation')
 
-        if not serializer.is_valid():
-            print("hello")
-        
-        if not serializer.is_valid() or user_exists:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
-        else:
             User.objects.create_user(
                 email=email,
                 password=password,
                 full_name=full_name,
-                organisation=organisation,
+                organisation=organisation if organisation else organisations.UNASSIGNED,
                 user_type=user_types.CUSTOM,
             )
-            return Response({ "error": 0 }, status=status.HTTP_201_CREATED)
+            return create_custom_positive_response(response_status=status.HTTP_201_CREATED)
+        else:
+            return create_bad_request_response()
 
 
 class localLogin(APIView):
-    def get(self, request, format=None):
-        print(request)
-        return Response("hi2")
+    def post(self, request):
+        serializer = loginAccountSerializer(data=request.data)
+        
+        if serializer.is_valid():
+            email = serializer.validated_data.get('email')
+            password = serializer.validated_data.get('password')
+
+            try:
+                user = User.objects.get(email=email)
+                if user.check_password(password):
+                    return create_ok_response({ "tokens": get_tokens_for_user(user) })
+                else:
+                    return create_bad_request_response()
+            except User.DoesNotExist:
+                return create_bad_request_response()
 
 
-class HelloView(APIView):
+            return create_ok_response({
+                "errors": serializer.errors
+            })
+        else:
+            return create_bad_request_response()
+
+
+# Just an example of a protected route, remove once real ones are implemented
+class tokenTest(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
-        content = { 'message': 'hello world' }
-        return Response(content)
+        return create_ok_response()
