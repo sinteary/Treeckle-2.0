@@ -38,14 +38,4 @@ class UserManager(BaseUserManager):
             organisation=organisation,
             password=password,
             **extra_fields
-            )
-            
-
-
-
-
-
-
-
-
-        
+        )
