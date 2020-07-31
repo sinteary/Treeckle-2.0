@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from .views import createLocalAccount, localLogin, tokenTest
+from .views import createLocalAccount, localLogin, tokenTest, openIDLogin, openIDCallback
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
 urlpatterns = [
@@ -23,5 +23,7 @@ urlpatterns = [
     path('account', createLocalAccount.as_view(), name='local user creation'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
-    path('token/example-protected-route', tokenTest.as_view(), name="test token")
+    path('token/example-protected-route', tokenTest.as_view(), name="test token"),
+    path('nus-openid', openIDLogin.as_view(), name='nus-openid-trigger'),
+    path('nus-callback', openIDCallback.as_view(), name='nus-openid-callback'),
 ]
