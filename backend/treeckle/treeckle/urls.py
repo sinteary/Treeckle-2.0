@@ -15,13 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from authentication import views as userViews
-from rest_framework import routers
-
-router = routers.DefaultRouter()
-router.register(r'users', userViews.UserViewSet)
 
 urlpatterns = [
-    path('api/', include(router.urls)),
+    path('api/', include('treeckle.api_urls')),
+    path('gateway/', include('authentication.urls')),
     path('admin/', admin.site.urls),
 ]
