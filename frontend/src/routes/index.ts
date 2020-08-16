@@ -10,5 +10,6 @@ export const EVENTS_PATH = "/events";
 export const ADMIN_BOOKINGS_PATH = "/admin/bookings";
 export const ADMIN_USERS_PATH = "/admin/users";
 export const ADMIN_SETTINGS_PATH = "/admin/settings";
+export const ADMIN_VENUE_PATH = "/admin/venue";
 export const PROFILE_PATH = "/profile";
 export const OPEN_ID_PATH = "/openid";

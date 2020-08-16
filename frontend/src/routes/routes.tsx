@@ -16,6 +16,7 @@ import {
   AdminBookingsPage,
   AdminUsersPage,
   AdminSettingsPage,
+  AdminVenuePage,
   ProfilePage,
   HomePage,
   OpenIdPage,
@@ -30,6 +31,7 @@ import {
   ADMIN_BOOKINGS_PATH,
   ADMIN_SETTINGS_PATH,
   ADMIN_USERS_PATH,
+  ADMIN_VENUE_PATH,
   PROFILE_PATH,
   HOME_PATH,
   OPEN_ID_PATH,
@@ -80,6 +82,11 @@ function Routes() {
             path={ADMIN_SETTINGS_PATH}
             exact
             render={() => <AdminSettingsPage />}
+          />
+          <Route
+            path={ADMIN_VENUE_PATH}
+            exact
+            render={() => <AdminVenuePage />}
           />
           <Route path={PROFILE_PATH} exact render={() => <ProfilePage />} />
           <Route children={() => <Redirect to={HOME_PATH} />} />

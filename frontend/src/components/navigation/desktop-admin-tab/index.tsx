@@ -5,6 +5,7 @@ import {
   ADMIN_BOOKINGS_PATH,
   ADMIN_USERS_PATH,
   ADMIN_SETTINGS_PATH,
+  ADMIN_VENUE_PATH,
 } from "../../../routes";
 
 function DesktopAdminTab() {
@@ -37,6 +38,12 @@ function DesktopAdminTab() {
           to={ADMIN_SETTINGS_PATH}
           active={pathname === ADMIN_SETTINGS_PATH}
           text="Settings"
+        />
+        <Dropdown.Item
+          as={Link}
+          to={ADMIN_VENUE_PATH}
+          active={pathname === ADMIN_VENUE_PATH}
+          text="Create Venue"
         />
       </Dropdown.Menu>
     </Dropdown>
