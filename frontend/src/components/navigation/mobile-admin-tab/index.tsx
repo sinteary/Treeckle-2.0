@@ -5,6 +5,7 @@ import {
   ADMIN_BOOKINGS_PATH,
   ADMIN_USERS_PATH,
   ADMIN_SETTINGS_PATH,
+  ADMIN_VENUE_PATH,
 } from "../../../routes";
 import "./index.scss";
 
@@ -44,6 +45,11 @@ function MobileAdminTab({ onTabClick }: Props) {
         <TabItem
           label="Settings"
           redirectPath={ADMIN_SETTINGS_PATH}
+          onTabClick={onTabClick}
+        />
+        <TabItem
+          label="Create venue"
+          redirectPath={ADMIN_VENUE_PATH}
           onTabClick={onTabClick}
         />
       </Accordion.Content>

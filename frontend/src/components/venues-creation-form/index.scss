@@ -1,0 +1,10 @@
+.default-fields {
+  .ui.form .inline.field > label {
+    width: 150px;
+    float: left;
+    padding-top: 10px;
+  }
+  .ui.form .inline.field:not(.wide) .ui.input {
+    width: 50%;
+  }
+}
